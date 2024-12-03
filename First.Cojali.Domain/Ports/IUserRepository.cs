@@ -1,6 +1,6 @@
 ﻿using First.Cojali.Domain.Entities;
 
-namespace First.Cojali.Application.Interfaces;
+namespace First.Cojali.Domain.Ports;
 
 public interface IUserRepository
 {

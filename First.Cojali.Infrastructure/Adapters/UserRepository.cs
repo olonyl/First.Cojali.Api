@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using First.Cojali.Application.Interfaces;
 using First.Cojali.Infrastructure.Services;
+using First.Cojali.Domain.Ports;
 
 namespace First.Cojali.Infrastructure.Adapters;
 

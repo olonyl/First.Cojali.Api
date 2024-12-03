@@ -2,6 +2,7 @@
 using First.Cojali.Application.Interfaces;
 using First.Cojali.Application.Models;
 using First.Cojali.Domain.Entities;
+using First.Cojali.Domain.Ports;
 
 namespace First.Cojali.Application.Services;
 
@@ -9,11 +10,13 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
+    private readonly IEmailService _emailService;
 
-    public UserService(IUserRepository userRepository, IMapper mapper)
+    public UserService(IUserRepository userRepository, IMapper mapper, IEmailService emailService)
     {
         _userRepository = userRepository;
         _mapper = mapper;
+        _emailService = emailService;
     }
 
     public IEnumerable<UserDto> GetAllUsers()
@@ -34,6 +37,8 @@ public class UserService : IUserService
 
         var newUser = new User { Name = name, Email = email };
         _userRepository.AddUser(newUser);
+
+        _emailService.SendEmail(email, "Welcome!", $"Hello {name}, your account has been created.");
 
         return _mapper.Map<UserDto>(newUser);
     }

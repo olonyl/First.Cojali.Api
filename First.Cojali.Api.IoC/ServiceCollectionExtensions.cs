@@ -2,6 +2,7 @@
 using First.Cojali.Api.IoC.Mappings;
 using First.Cojali.Application.Interfaces;
 using First.Cojali.Application.Services;
+using First.Cojali.Domain.Ports;
 using First.Cojali.Infrastructure.Adapters;
 using First.Cojali.Infrastructure.Utilities;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ public static class ServiceCollectionExtensions
     {
         // Register Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IEmailService, EmailService>();
 
         // Register Repositories
         services.AddScoped<IUserRepository>(provider =>
