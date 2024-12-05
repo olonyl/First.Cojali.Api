@@ -1,1 +1,22 @@
-[{"Id":1,"Name":"John Doe","Email":"johndoe@example.com"},{"Id":2,"Name":"Jane Smith","Email":"janesmith@example.com"},{"Id":3,"Name":"olonyl","Email":"olo@outlook.com"}]
+﻿[
+  {
+    "Id": 1,
+    "Name": "John Doe",
+    "Email": "johndoe@example.com"
+  },
+  {
+    "Id": 2,
+    "Name": "Jane Smith",
+    "Email": "janesmith@example.com"
+  },
+  {
+    "Id": 3,
+    "Name": "olonyl",
+    "Email": "olo@outlook.com"
+  },
+  {
+    "Id": 4,
+    "Name": "jose",
+    "Email": "jose@gmail.com"
+  }
+]

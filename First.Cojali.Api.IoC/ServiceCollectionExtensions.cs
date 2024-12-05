@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
                 "The User JSON file was not found."
             );
 
-            return new UserRepository(absolutePath);
+            return new FileUserRepository(absolutePath);
         });
 
         // Register AutoMapper profiles
