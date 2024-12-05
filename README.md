@@ -48,7 +48,58 @@ This project was developed as part of a backend exercise for a job application. 
 ### Prerequisites
 1. **.NET SDK**: Download the latest .NET SDK from [Microsoft](https://dotnet.microsoft.com/).
 2. **Visual Studio**: Use Visual Studio or another IDE that supports .NET Core.
-3. **JSON Data File**: Ensure the JSON file for user data is available in the correct location (typically in the API project folder).
+3. **JSON Data File**: Ensure the JSON file for user data is available in the correct location (see details below).
+
+---
+
+### Configuring `appsettings.json`
+
+The API relies on a `UserJsonFilePath` property in `appsettings.json` or `appsettings.Development.json` to locate the JSON file for storing user data. This property is combined with the application's base directory using the following logic:
+
+```csharp
+var absolutePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath));
+```
+
+Where `relativePath` is the value of `UserJsonFilePath` in the configuration.
+
+#### Default Example
+With the default configuration:
+```json
+"DataSources": {
+  "UserJsonFilePath": "..\\..\\..\\..\\First.Cojali.Infrastructure\\Data\\users.json"
+}
+```
+If the project structure is as follows:
+```
+C:\project\Cojali\
+├── First.Cojali.Api\
+├── First.Cojali.Infrastructure\
+│   └── Data\
+│       └── users.json
+```
+The computed absolute path would be:
+```
+C:\project\Cojali\First.Cojali.Infrastructure\Data\users.json
+```
+
+#### Customizing the JSON File Location or Name
+If you want to place the JSON file in a different location or name it differently:
+1. Update the `UserJsonFilePath` property in `appsettings.json`:
+   ```json
+   "DataSources": {
+     "UserJsonFilePath": "path\\to\\your\\custom_users.json"
+   }
+   ```
+2. For example:
+   - File Location: `C:\data\my_users.json`
+   - Configuration:
+     ```json
+     "DataSources": {
+       "UserJsonFilePath": "..\\..\\..\\..\\data\\my_users.json"
+     }
+     ```
+
+---
 
 ### Steps to Run
 1. Clone the repository:
@@ -64,7 +115,7 @@ This project was developed as part of a backend exercise for a job application. 
    ```bash
    dotnet restore
    ```
-4. Update the `appsettings.json` file with any required configurations.
+4. Ensure `appsettings.json` or `appsettings.Development.json` has the correct `UserJsonFilePath`.
 5. Run the project:
    ```bash
    dotnet run --project First.Cojali.Api
